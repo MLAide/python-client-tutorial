@@ -1,4 +1,4 @@
-from mlaide import client
+from mlaide import MLAideClient, ConnectionOptions
 from mlaide.model import ArtifactRef
 import pandas as pd
 from sklearn import metrics
@@ -9,11 +9,11 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 
 # create connection
-options = client.MvcOptions(
-    mvc_server_url='http://localhost:8881/api/v1',
-    api_key='NTIxYmUxOWMtNTJkMi00NDQ0LTljYjUtMTU1ZWZhMDFjYWFmOuKCqDdBPMKw4oKjwrjCsOKCsHTigrFj'
+options = ConnectionOptions(
+    server_url='http://localhost:9000/api/v1',
+    api_key='YXV0aDB8NWY1M2FiNjc0MmUzNDUwMDZkYjJiOGQyOjB3wrdNeuKAoVfigLnigrbigrDigqDigKE='
 )
-mlaide_client = client.MvcClient(project_key='usa-housing', options=options)
+mlaide_client = MLAideClient(project_key='usa-housing', options=options)
 
 # start tracking
 run_data_preparation = mlaide_client.start_new_run(experiment_key='linear-regression', run_name='data preparation')
@@ -64,7 +64,7 @@ run_linear_regression = mlaide_client.start_new_run(experiment_key='linear-regre
                                                     used_artifacts=[dataset_artifact_ref, pipeline_artifact_ref])
 
 lin_reg = LinearRegression(normalize=True)
-lin_reg.fit(X_train,y_train)
+lin_reg.fit(X_train, y_train)
 
 run_linear_regression.log_model(lin_reg, 'linear regression')
 
