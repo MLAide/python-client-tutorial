@@ -1,5 +1,4 @@
-from mlaide import MLAideClient, ConnectionOptions
-from mlaide.model import ArtifactRef
+from mlaide import MLAideClient, ConnectionOptions, ArtifactRef
 import pandas as pd
 from sklearn import metrics
 from sklearn.linear_model import Lasso, LinearRegression
@@ -11,7 +10,7 @@ import numpy as np
 # create connection
 options = ConnectionOptions(
     server_url='http://localhost:9000/api/v1',
-    api_key='YXV0aDB8NWY1M2FiNjc0MmUzNDUwMDZkYjJiOGQyOjB3wrdNeuKAoVfigLnigrbigrDigqDigKE='
+    api_key=''
 )
 mlaide_client = MLAideClient(project_key='usa-housing', options=options)
 
@@ -19,7 +18,7 @@ mlaide_client = MLAideClient(project_key='usa-housing', options=options)
 run_data_preparation = mlaide_client.start_new_run(experiment_key='linear-regression', run_name='data preparation')
 
 # read data
-housing_data = pd.read_csv('data/housing.csv')
+housing_data = pd.read_csv('boston-house-pricing/data/housing.csv')
 
 # add dataset as artifact
 artifact = run_data_preparation.create_artifact(name="USA housing dataset", artifact_type="dataset", metadata={})
