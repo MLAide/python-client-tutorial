@@ -8,17 +8,27 @@ To run this tutorial we use [pyenv](https://github.com/pyenv/pyenv) and
 [virtualenv](https://virtualenv.pypa.io/en/latest/) to create a virtual 
 environment. All dependencies will be installed in the virtual environment.
 
-1. Create virtual environment
+1. Install Python 3.9 (if not already present) via pyenv
 ```
-virtualenv venv
-```
-
-2. Activate virtual environment
-```
-source venv/bin/activate
+pyenv install
 ```
 
-3. Install dependencies
+2. Install virtualenv
+```
+pip install virtualenv
+```
+
+3. Create virtual environment
+```
+virtualenv .venv
+```
+
+4. Activate virtual environment
+```
+source .venv/bin/activate
+```
+
+5. Install dependencies
 ```
 pip install -r requirements.txt
 ```
